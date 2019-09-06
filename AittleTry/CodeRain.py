@@ -18,11 +18,11 @@ class CodeRain(object):
     def play_code(self):
 
         pygame.init()
-        win = pygame.display.set_mode((self.panel_width,self.panel_height), 32)
+        win = pygame.display.set_mode((self.panel_width, self.panel_height), 32)
         font = pygame.font.SysFont("SourceCodePro-Black.ttf", 25)
-        bg_suface = pygame.Surface((self.panel_width,self.panel_height), flags = pygame.SRCALPHA)
-        pygame.Surface.convert(bg_suface)
-        bg_suface.fill(pygame.Color(0, 0, 0, 25))
+        bg = pygame.Surface((self.panel_width, self.panel_height), flags=pygame.SRCALPHA)
+        pygame.Surface.convert(bg)
+        bg.fill(pygame.Color(0, 0, 0, 25))
         win.fill((0, 0, 0))
 
         letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
@@ -30,7 +30,7 @@ class CodeRain(object):
         texts = [font.render(str(letter[i]), True, (0, 255, 0)) for i in range(20)]
 
         column = int(self.panel_width / self.font_p)
-        drops = [0 for i in range(column)]
+        drops = [i for i in range(column)]
 
         while True:
 
@@ -41,9 +41,9 @@ class CodeRain(object):
                     change = pygame.key.get_pressed()
                     if change[32]:
                         exit()
-            pygame.time.delay(30)
+            pygame.time.delay(60)
 
-            win.blit(bg_suface, (0, 0))
+            win.blit(bg, (0, 0))
 
             for i in range(len(drops)):
                 text = random.choice(texts)
